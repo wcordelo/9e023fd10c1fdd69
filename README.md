@@ -38,7 +38,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Create `.env`:
+Create `.env` (see `.env.example` for keys):
 
 ```dotenv
 GOOGLE_API_KEY=your_key_here
