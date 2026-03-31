@@ -1,0 +1,41 @@
+WILLIAM LOPEZ-CORDERO
+Full Stack Engineer | Scalable Systems
+williamlopezc@gmail.com (213) 210-9603 ¯ william-lopez-cordero  wcordelo
+
+EDUCATION
+BS Aerospace Engineering MIT
+2014 – 2019
+
+EXPERIENCE
+Founding Engineer Bello
+2023 – Present ½ Remote
+• Built and scaled full-stack platform (React, Next.js, TypeScript) serving 60K+ users
+• Led AWS/GCP infrastructure using Pulumi, reducing manual operations by 90%+ and enabling auto-scaling systems
+• Developed AI content pipelines (aggregation, validation, generation) powering 1M+ downloads
+• Drove $2M+ revenue via launch of Blueprint Protocol and creator monetization features
+• Designed loyalty rewards system distributing $1M+ in incentives, increasing retention from 30% to 60%
+
+Co-Founder & Head of Architecture Elphi
+Aug 2018 – Apr 2023 Remote
+• Led architecture and development of mortgage platform reducing loan origination time by 30%+
+• Built and scaled cloud-native infrastructure on GCP and Firebase supporting production workloads
+• Managed and mentored a team of 10+ engineers across frontend, backend, and infrastructure
+• Delivered multiple production systems from 0→1 that converted into paying customers and supported seed-stage
+fundraising
+• Improved system performance and reliability, increasing operational efficiency by 25%+
+• Established engineering best practices (CI/CD, testing, monitoring), improving deployment speed and stability
+
+Software Engineer Facebook
+2016  Menlo Park, CA
+• Shipped GIF comments feature to News Feed used by millions of users
+• Built full-stack functionality using React, PHP, Hack, and JavaScript
+
+Software Engineer Google
+2014 Seattle / Kirkland, WA
+• Built and deployed a full-stack web application using Python, App Engine, HTML, CSS, and JavaScript
+• Presented final product to senior engineers, demonstrating system design and implementation
+
+SKILLS
+Languages: TypeScript, Go, Python, SQL
+Frameworks: React, Next.js, Node.js
+Cloud: AWS, GCP, Azure, Docker, Pulumi
