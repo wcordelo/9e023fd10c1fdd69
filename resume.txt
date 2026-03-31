@@ -1,6 +1,5 @@
-WILLIAM LOPEZ-CORDERO
+W. L.
 Full Stack Engineer | Scalable Systems
-williamlopezc@gmail.com (213) 210-9603 ¯ william-lopez-cordero  wcordelo
 
 EDUCATION
 BS Aerospace Engineering MIT
@@ -8,7 +7,7 @@ BS Aerospace Engineering MIT
 
 EXPERIENCE
 Founding Engineer Bello
-2023 – Present ½ Remote
+2023 – Present • Remote
 • Built and scaled full-stack platform (React, Next.js, TypeScript) serving 60K+ users
 • Led AWS/GCP infrastructure using Pulumi, reducing manual operations by 90%+ and enabling auto-scaling systems
 • Developed AI content pipelines (aggregation, validation, generation) powering 1M+ downloads

@@ -18,8 +18,8 @@ AI co-pilot that connects to NEON, reconstructs fragmented challenges, routes ea
 
 - `copilot.py` - main runtime + handlers (read the **module docstring at the top** for end-to-end data flow)
 - `tests/test_copilot.py` - regression suite
-- `tests/fixtures.py` - captured real challenge fixtures
-- `resume.txt` - crew manifest source
+- `tests/fixtures.py` - captured challenge fixtures
+- `resume.txt` - crew manifest for manifest/verification (committed; contact/PII stripped, roles and employers kept)
 - `requirements.txt` - dependencies
 - `.env` - local secrets/config (not for commit)
 
@@ -44,6 +44,8 @@ Create `.env` (see `.env.example` for keys):
 GOOGLE_API_KEY=your_key_here
 NEON_CODE=your_neon_code_here
 ```
+
+`copilot.py` loads `resume.txt` from the project root; edit that file to change the crew manifest.
 
 ## Run
 
@@ -95,6 +97,7 @@ This keeps attempts low and converts every failure into permanent regression cov
 - Knowledge tests hit live Wikipedia endpoints.
 - Manifest tests hit Gemini (requires `GOOGLE_API_KEY`).
 - Computation expected values are validated against JavaScript behavior and stored in fixtures.
+- Offline tests use a **fake** vessel code (`tests/constants.py` — `TEST_NEON_CODE`). Your real `NEON_CODE` belongs only in `.env` for running `copilot.py`, not in the repo.
 
 ## Cache Cleanup (Optional)
 

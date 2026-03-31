@@ -4,7 +4,11 @@ Regression data from real NEON runs: prompts and expected routes/outputs.
 Computation: `expected_result` / `js_expression` come from Node `eval()` so they
 match NEON's JavaScript. Knowledge: `expected_word` is checked against live
 Wikipedia in tests. Add a row here after any live failure, then fix until tests pass.
+
+Handshake auth expected digits use `tests.constants.TEST_NEON_CODE` (fake code for CI).
 """
+
+from tests.constants import TEST_NEON_CODE
 
 HANDSHAKE_FREQUENCY_CHALLENGES = [
     {
@@ -37,7 +41,7 @@ HANDSHAKE_FREQUENCY_CHALLENGES = [
 HANDSHAKE_AUTH_CHALLENGES = [
     {
         "prompt": "Transmit your vessel authorization code, followed by the pound key.",
-        "expected_digits": "9e023fd10c1fdd69#",
+        "expected_digits": f"{TEST_NEON_CODE}#",
     },
 ]
 

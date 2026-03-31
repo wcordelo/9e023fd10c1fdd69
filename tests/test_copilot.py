@@ -15,6 +15,7 @@ import pytest
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
 from copilot import NeonCopilot
+from tests.constants import TEST_NEON_CODE
 from tests.fixtures import (
     HANDSHAKE_FREQUENCY_CHALLENGES,
     HANDSHAKE_AUTH_CHALLENGES,
@@ -25,24 +26,22 @@ from tests.fixtures import (
     ROUTING_EDGE_CASES,
 )
 
-NEON_CODE = "9e023fd10c1fdd69"
-RESUME = open(os.path.join(os.path.dirname(os.path.dirname(__file__)), "resume.txt")).read()
+_ROOT = os.path.dirname(os.path.dirname(__file__))
+RESUME = open(os.path.join(_ROOT, "resume.txt"), encoding="utf-8").read()
 
 
 @pytest.fixture
 def copilot():
-    return NeonCopilot(neon_code=NEON_CODE, resume_text=RESUME, gemini_api_key="dummy")
+    return NeonCopilot(neon_code=TEST_NEON_CODE, resume_text=RESUME, gemini_api_key="dummy")
 
 
 @pytest.fixture
 def copilot_with_gemini():
-    """Real Gemini client for manifest tests."""
-    from dotenv import load_dotenv
-    load_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), ".env"))
+    """Real Gemini client for manifest tests (`GOOGLE_API_KEY` from env or `.env` via conftest)."""
     key = os.getenv("GOOGLE_API_KEY", "")
     if not key:
         pytest.skip("GOOGLE_API_KEY not set")
-    return NeonCopilot(neon_code=NEON_CODE, resume_text=RESUME, gemini_api_key=key)
+    return NeonCopilot(neon_code=TEST_NEON_CODE, resume_text=RESUME, gemini_api_key=key)
 
 
 # ── Routing ───────────────────────────────────────────────────────────
@@ -178,7 +177,7 @@ class TestHandshake:
         response = copilot.route_and_respond(
             "Transmit your vessel authorization code, followed by the pound key."
         )
-        assert response == {"type": "enter_digits", "digits": "9e023fd10c1fdd69#"}
+        assert response == {"type": "enter_digits", "digits": f"{TEST_NEON_CODE}#"}
 
 
 # ── Computation ───────────────────────────────────────────────────────
@@ -393,26 +392,27 @@ class TestOrdinalParsing:
 
 class TestVerification:
     def _setup_memory(self, copilot):
+        # Synthetic manifest replies (no real PII) aligned with word-index assertions below.
         copilot.session_memory = [
             {
                 "checkpoint": "manifest",
                 "prompt": "Speak a summary of your crew member's best project (work or personal) based on the information in their resume, between 64 and 256 total characters.",
-                "response": "At Bello, William built a full-stack platform serving 60K+ users, led AWS/GCP infrastructure, and drove $2M+ in revenue through the launch of the Blueprint Protocol.",
+                "response": "At Acme Corp, Alex built a full-stack platform serving 50K+ users, led AWS infrastructure, and drove revenue growth through the launch of the Northstar program.",
             },
             {
                 "checkpoint": "manifest",
                 "prompt": "Speak a summary of your crew member's skills based on the information in their resume, between 64 and 256 total characters.",
-                "response": "William Lopez-Cordero is a Full Stack Engineer skilled in TypeScript, Go, Python, and SQL with React, Next.js, Node.js, AWS, GCP, Azure, Docker, and Pulumi expertise.",
+                "response": "Alex Morgan is skilled in TypeScript, Go, Python, and SQL with React, Next.js, Node.js, AWS, GCP, Azure, Docker, and Pulumi expertise.",
             },
             {
                 "checkpoint": "manifest",
                 "prompt": "Speak a summary of your crew member's education based on the information in their resume, between 64 and 256 total characters.",
-                "response": "William Lopez-Cordero earned a Bachelor of Science in Aerospace Engineering from the Massachusetts Institute of Technology (MIT).",
+                "response": "Alex Morgan earned a Bachelor of Science in Computer Science from State University between 2014 and 2019.",
             },
             {
                 "checkpoint": "manifest",
                 "prompt": "Speak a summary of your crew member's work experience based on the information in their resume, between 64 and 256 total characters.",
-                "response": "William has worked at Bello, Elphi, Facebook, and Google building scalable platforms and cloud infrastructure serving millions of users.",
+                "response": "Alex has worked at Acme Corp, Beta Labs, ExampleCo, and Gamma LLC building scalable platforms and cloud infrastructure serving millions of users.",
             },
         ]
 
